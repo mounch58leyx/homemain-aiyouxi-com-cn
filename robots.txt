@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mounch58leyx.github.io/homemain-aiyouxi-com-cn/sitemap.xml
