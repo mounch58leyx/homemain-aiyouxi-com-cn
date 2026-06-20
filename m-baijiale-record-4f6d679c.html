@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于百家乐的一点思考</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf6f0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Noto Sans', 'Helvetica Neue', sans-serif;
+            color: #2c2c2c;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+            background: #ffffffdd;
+            padding: 2.5rem 2rem;
+            border-radius: 32px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.03), 0 1px 6px rgba(0, 0, 0, 0.02);
+            backdrop-filter: blur(2px);
+        }
+
+        .hero {
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #e9e1d8;
+            padding-bottom: 2.2rem;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            color: #3a2e24;
+            margin-bottom: 0.7rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #7a6f64;
+            border-left: 4px solid #cbb59a;
+            padding-left: 1.2rem;
+            margin-top: 0.4rem;
+        }
+
+        .section {
+            margin: 2.4rem 0;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            font-weight: 450;
+            color: #4a3d31;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #ddd6cb;
+            padding-bottom: 0.3rem;
+        }
+
+        .section p {
+            margin: 1rem 0;
+            text-align: justify;
+        }
+
+        .inset-box {
+            background: #f3ede6;
+            padding: 1.4rem 1.6rem;
+            border-radius: 20px;
+            margin: 1.8rem 0;
+            border-left: 6px solid #b7a185;
+            font-size: 0.96rem;
+            color: #3e342b;
+        }
+
+        .inset-box strong {
+            color: #2f241b;
+        }
+
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin: 1.4rem 0;
+        }
+
+        .feature-item {
+            background: #faf6f0;
+            flex: 1 1 200px;
+            padding: 1.2rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #e7ddd2;
+            transition: box-shadow 0.2s;
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        .feature-item .num {
+            display: inline-block;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: #b49b82;
+            margin-right: 0.3rem;
+        }
+
+        .faq-summary {
+            background: #f7f1ea;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0;
+        }
+
+        .faq-summary details {
+            margin: 0.6rem 0;
+        }
+
+        .faq-summary summary {
+            font-weight: 500;
+            color: #3e3329;
+            cursor: pointer;
+            padding: 0.3rem 0;
+        }
+
+        .faq-summary summary::-webkit-details-marker {
+            color: #aa927b;
+        }
+
+        .faq-summary p {
+            margin: 0.6rem 0 0.2rem 1.2rem;
+            color: #4f443b;
+        }
+
+        .footer-links {
+            margin-top: 3rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid #e3dad0;
+            font-size: 0.9rem;
+            color: #6a5f55;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+        }
+
+        .footer-links a {
+            color: #5f4d3b;
+            text-decoration: none;
+            border-bottom: 1px dotted #cbb59a;
+        }
+
+        .footer-links a:hover {
+            border-bottom-style: solid;
+            color: #2f241b;
+        }
+
+        .inline-link {
+            color: #5f4d3b;
+            text-decoration: none;
+            border-bottom: 1px dotted #b7a185;
+            font-weight: 450;
+        }
+
+        .inline-link:hover {
+            border-bottom-style: solid;
+            color: #2f241b;
+        }
+
+        .tagline {
+            margin-top: 0.3rem;
+            font-style: italic;
+            color: #7f7166;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .page {
+                padding: 1.8rem 1.2rem;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .feature-grid {
+                flex-direction: column;
+            }
+            .faq-summary {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <div class="hero">
+        <h1>牌局之间，节奏之内</h1>
+        <div class="sub">一种纸牌游戏的观察笔记</div>
+        <p style="margin-top: 1.2rem; color: #4f443b;">
+            在众多桌面娱乐中，<a href="https://m--baijiale.com" class="inline-link">百家乐</a>始终以极简的规则和安静的节奏，占据着一席之地。没有复杂的决策树，没有漫长的思考时间——每一局不过是闲与庄之间的三次牌落。但恰恰是这种简洁，让许多人对它的内在逻辑产生了持续的兴趣。
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>为什么它让人停留</h2>
+        <p>
+            有人说，<a href="https://m--baijiale.com" class="inline-link">百家乐</a>的魅力在于它的“低介入感”。玩家只需要选择一方，剩下的交给牌面。这种旁观式的参与，反而让人更专注地观察每一次发牌、每一张点数。它不考验记忆力或心理战，更像是一种对概率的近距离体验。
+        </p>
+        <p>
+            也正因如此，很多人把它看作一种“安静的博弈”——你不需要大声喧哗，只需要看着牌，等结果。这种克制的交互方式，在快节奏的日常里，反而提供了一种罕见的沉着感。
+        </p>
+    </div>
+
+    <div class="inset-box">
+        <strong>一点观察</strong> —— 许多经常接触的人会告诉你，<a href="https://m--baijiale.com" class="inline-link">百家乐</a>的关键不在于“猜中”，而在于理解节奏：什么时候牌路显得有规律，什么时候又会突然变化。熟悉它的人往往更在意过程，而非单次结果。
+    </div>
+
+    <div class="section">
+        <h2>几个常见的讨论点</h2>
+        <div class="feature-grid">
+            <div class="feature-item">
+                <span class="num">/01</span> 路单与趋势<br>
+                <span style="font-size: 0.9rem; color: #6a5f55;">许多人习惯记录每一局的颜色，寻找视觉上的“走势”。虽然每局独立，但路单提供了一种叙事的可能。</span>
+            </div>
+            <div class="feature-item">
+                <span class="num">/02</span> 抽水与赔率<br>
+                <span style="font-size: 0.9rem; color: #6a5f55;">庄家抽水是规则的一部分，了解它有助于更理性地看待赔率结构，而不是只看表面数字。</span>
+            </div>
+            <div class="feature-item">
+                <span class="num">/03</span> 自然赢与补牌<br>
+                <span style="font-size: 0.9rem; color: #6a5f55;">8或9点直接停牌，这种“自然赢”的设定让牌局常常在几秒内结束，短促而干脆。</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-summary">
+        <h2 style="font-size: 1.2rem; border: none; margin-bottom: 0.2rem;">一些常见疑问</h2>
+        <details>
+            <summary>百家乐真的需要策略吗？</summary>
+            <p>从数学角度看，每一局都是独立事件。所谓策略更多是关于资金管理和情绪节奏，而非改变概率。了解规则，保持平常心，比任何“秘籍”都更重要。</p>
+        </details>
+        <details>
+            <summary>为什么有人会记录“路单”？</summary>
+            <p>路单是一种视觉辅助，帮助观察已经发生的格局。它不预测未来，但可以作为参考，让玩家对当前牌桌的“个性”有一个印象。</p>
+        </details>
+        <details>
+            <summary>新手可以从哪里开始了解？</summary>
+            <p>最好的起点是先熟悉补牌规则与赔率结构，然后以小额尝试，把注意力放在理解流程上。像任何纸牌游戏一样，熟悉感来自重复体验。</p>
+        </details>
+        <p style="margin-top: 1rem; color: #6a5f55; font-size: 0.9rem;">若想进一步了解规则或浏览牌局记录，可参考 <a href="https://m--baijiale.com" class="inline-link">百家乐</a> 相关页面。</p>
+    </div>
+
+    <div class="footer-links">
+        <span>更多相关：</span>
+        <a href="https://m--baijiale.com">百家乐</a>
+        <span style="color: #bbb2a7;">·</span>
+        <a href="#" style="pointer-events: none; opacity: 0.7; text-decoration: none;">规则摘要</a>
+        <a href="#" style="pointer-events: none; opacity: 0.7; text-decoration: none;">路单示例</a>
+        <span style="margin-left: auto; font-size: 0.8rem; color: #bbb2a7;">记录于一个安静的午后</span>
+    </div>
+</div>
+</body>
+</html>
