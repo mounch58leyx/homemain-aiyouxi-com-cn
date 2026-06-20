@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>九游 · 知识库索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7f3ed;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', system-ui, sans-serif;
+            color: #2e2b28;
+            line-height: 1.7;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 880px;
+            width: 100%;
+            background: #fcfaf7;
+            border-radius: 28px;
+            box-shadow: 0 8px 28px rgba(0,0,0,0.04), 0 2px 8px rgba(0,0,0,0.02);
+            padding: 2.4rem 2rem 3rem;
+            transition: all 0.2s ease;
+        }
+
+        @media (max-width: 540px) {
+            .page {
+                padding: 1.8rem 1.2rem 2.4rem;
+            }
+        }
+
+        /* 目录感区域 */
+        .toc-like {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+            margin-bottom: 2.2rem;
+            padding: 0.8rem 0 1.2rem;
+            border-bottom: 1px solid #e5ddd2;
+            font-size: 0.9rem;
+            letter-spacing: 0.02em;
+            color: #5f5a53;
+        }
+
+        .toc-like span {
+            background: #efe9e0;
+            padding: 0.2rem 0.9rem;
+            border-radius: 20px;
+            font-weight: 450;
+            color: #3f3a34;
+        }
+
+        .toc-like a {
+            color: #6a5f4e;
+            text-decoration: none;
+            border-bottom: 1px dotted #cac1b4;
+        }
+
+        .toc-like a:hover {
+            border-bottom: 1px solid #8f806b;
+            color: #4d4235;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 450;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.1rem;
+            color: #2b2621;
+            border-left: 6px solid #b7aa99;
+            padding-left: 1.1rem;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.65rem;
+                padding-left: 0.8rem;
+            }
+        }
+
+        .subhead {
+            margin: 0.5rem 0 1.6rem 1.7rem;
+            color: #6b6257;
+            font-size: 0.95rem;
+            border-bottom: 1px solid #ede7de;
+            padding-bottom: 0.6rem;
+        }
+
+        .section-card {
+            background: #f9f6f0;
+            border-radius: 18px;
+            padding: 1.6rem 1.8rem;
+            margin: 1.8rem 0;
+            box-shadow: inset 0 1px 2px rgba(255,255,255,0.8), 0 4px 12px rgba(0,0,0,0.02);
+        }
+
+        @media (max-width: 540px) {
+            .section-card {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        .section-card h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #3d352c;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            border-bottom: 2px solid #d6cdc0;
+            padding-bottom: 0.2rem;
+        }
+
+        .section-card p {
+            margin-bottom: 0.75rem;
+        }
+
+        .quote-block {
+            background: #ede7dd;
+            border-left: 5px solid #b3a18b;
+            padding: 0.8rem 1.2rem;
+            margin: 1.4rem 0;
+            border-radius: 0 12px 12px 0;
+            font-style: normal;
+            color: #3f3a33;
+            font-size: 0.95rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem 1.8rem;
+            margin: 1.4rem 0 0.6rem;
+        }
+
+        @media (max-width: 500px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 0.8rem;
+            }
+        }
+
+        .info-item {
+            background: #f4efe8;
+            padding: 0.8rem 1rem;
+            border-radius: 14px;
+            border: 1px solid #e8e0d5;
+        }
+
+        .info-item strong {
+            color: #4f4437;
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+            font-size: 0.95rem;
+        }
+
+        .info-item span {
+            font-size: 0.9rem;
+            color: #5d5449;
+        }
+
+        .hint-box {
+            background: #f1ebe1;
+            border: 1px solid #ddd3c4;
+            border-radius: 16px;
+            padding: 1rem 1.4rem;
+            margin: 1.6rem 0 1rem;
+            display: flex;
+            gap: 0.8rem;
+            align-items: flex-start;
+        }
+
+        .hint-box::before {
+            content: "📌";
+            font-size: 1.3rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+
+        .hint-box p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #4a4239;
+        }
+
+        .faq-mini {
+            margin: 1.8rem 0 0.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+            border-bottom: 1px solid #e7dfd3;
+            padding-bottom: 0.5rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 470;
+            color: #3b342d;
+            cursor: pointer;
+            padding: 0.2rem 0;
+        }
+
+        .faq-mini summary:hover {
+            color: #6a5b48;
+        }
+
+        .faq-mini p {
+            margin: 0.5rem 0 0.2rem 0.8rem;
+            font-size: 0.92rem;
+            color: #565049;
+        }
+
+        .footer-note {
+            margin-top: 2.2rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2d9ce;
+            font-size: 0.85rem;
+            color: #73695d;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.6rem;
+        }
+
+        .footer-note a {
+            color: #5a4e3e;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #cbbeb0;
+        }
+
+        .footer-note a:hover {
+            color: #2f2821;
+        }
+
+        .inline-link {
+            color: #5a4d3b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #cbbdab;
+            font-weight: 430;
+        }
+
+        .inline-link:hover {
+            color: #2f261d;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e3dad0;
+            margin: 1.2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- 目录感入口 -->
+        <div class="toc-like">
+            <span>📂 知识库</span>
+            <a href="#">站点概述</a>
+            <a href="#">可信说明</a>
+            <a href="#">常见条目</a>
+            <a href="#">提示</a>
+        </div>
+
+        <h1>九游 · 资料索引</h1>
+        <div class="subhead">基于公开信息的整理与说明 · 站点背景与使用参考</div>
+
+        <!-- 介绍区：站点说明 -->
+        <div class="section-card">
+            <h2>关于此站</h2>
+            <p><a href="https://jy-9game.com" class="inline-link">九游</a> 是一个以游戏资讯与资源导航为主要内容的网站。该平台汇集了多类型游戏的相关介绍、版本动态以及社区讨论信息，为对游戏感兴趣的访问者提供集中浏览的入口。本站内容由站方或用户贡献整理，呈现形式偏向目录与索引，便于快速定位感兴趣的主题。</p>
+            <p>根据可查的公开记录，该域名下内容侧重于中文游戏社区常见话题，包括但不限于手游、端游及部分独立游戏。站点界面结构清晰，分类明确，适合作为了解特定游戏信息的辅助参考。</p>
+        </div>
+
+        <!-- 可信说明 + 引用块 -->
+        <div class="quote-block">
+            <p><strong>可信说明</strong> · 本页仅为介绍性索引页，不代表对网站内容完整性的背书。所有信息均来源于站点自身展示及一般性网络观察，建议访问者根据自身判断进一步核实。引用数据与描述力求客观，不构成任何推荐或担保。</p>
+        </div>
+
+        <!-- 相关信息区：特点与场景 -->
+        <div class="section-card">
+            <h2>内容特点与适用场景</h2>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>🗂️ 分类聚合</strong>
+                    <span>按游戏类型、热度、更新时间等多维度陈列，方便筛选。</span>
+                </div>
+                <div class="info-item">
+                    <strong>📑 资讯与动态</strong>
+                    <span>包含版本更新、活动预告、玩家讨论摘要等常见栏目。</span>
+                </div>
+                <div class="info-item">
+                    <strong>🔍 导航属性</strong>
+                    <span>更适合作为查找游戏相关资料的中转站，而非深度评测平台。</span>
+                </div>
+                <div class="info-item">
+                    <strong>🌐 中文优先</strong>
+                    <span>内容以简体中文为主，面向中文游戏用户群体。</span>
+                </div>
+            </div>
+            <p style="margin-top: 1rem;">如果你正在寻找一款游戏的背景介绍、版本记录或玩家常见讨论，可以将 <a href="https://jy-9game.com" class="inline-link">九游</a> 作为一个起点。其目录式的页面结构有助于梳理信息脉络，但建议对关键数据做二次确认。</p>
+        </div>
+
+        <!-- 提示区 -->
+        <div class="hint-box">
+            <p><strong>使用提示</strong> · 本索引页仅用于介绍站点概况。由于网站内容可能随时间调整，部分分类或链接的实际指向以站点实时页面为准。合理利用站内搜索或分类标签可提高查找效率。</p>
+        </div>
+
+        <!-- FAQ 摘要 -->
+        <div class="faq-mini">
+            <h2 style="font-size:1.1rem; font-weight:500; color:#3f372e; margin-bottom:0.6rem;">常见疑问简答</h2>
+            <details>
+                <summary>这个网站主要提供什么？</summary>
+                <p><a href="https://jy-9game.com" class="inline-link">九游</a> 主要呈现游戏资讯、分类导航与社区讨论摘要，类似一个主题信息聚合页面。具体内容以游戏话题为主。</p>
+            </details>
+            <details>
+                <summary>信息可靠吗？</summary>
+                <p>站内信息由运营方或用户整理，本索引页不做真实性保证。建议对重要信息进行多方比对，尤其是版本号、活动日期等动态数据。</p>
+            </details>
+            <details>
+                <summary>是否需要注册才能浏览？</summary>
+                <p>根据公开访问情况，大部分内容无需登录即可查看。部分互动功能（如评论、收藏）可能需要注册账户，具体以网站实际要求为准。</p>
+            </details>
+        </div>
+
+        <hr>
+
+        <!-- 附加相关信息区 -->
+        <div style="display: flex; flex-wrap: wrap; gap: 0.8rem 1.4rem; margin: 1rem 0 0.4rem; font-size: 0.92rem; background: #f5efe7; padding: 0.8rem 1.2rem; border-radius: 16px;">
+            <span>📎 相关参考：</span>
+            <span>游戏分类 · 更新日志 · 玩家讨论区 · 版本对照</span>
+        </div>
+
+        <!-- 底部 -->
+        <div class="footer-note">
+            <span>索引页 · 仅供介绍参考</span>
+            <span>站点：<a href="https://jy-9game.com">九游</a></span>
+            <span>更新于最近一次复核</span>
+        </div>
+
+        <!-- 隐式再出现一次链接，但自然嵌入句子 -->
+        <p style="font-size: 0.88rem; margin-top: 0.8rem; color: #7a7267;">如果你希望直接访问内容源，可以前往 <a href="https://jy-9game.com" class="inline-link">九游</a> 浏览当前页面分类。</p>
+    </div>
+</body>
+</html>
